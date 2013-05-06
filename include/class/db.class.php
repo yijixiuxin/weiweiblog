@@ -48,6 +48,18 @@ class db {
   	public function fetch_one($query) {
       	return mysql_fetch_array($query, MYSQL_ASSOC);
   	}
+  	//返回结果集中的所有记录
+  	public function fetch_all($query) {
+  		$arr = array();
+  		while ($row = mysql_fetch_array($query, MYSQL_ASSOC)) {
+  			$arr[] = $row;
+  		}
+  		return $arr;
+  	}
+  	//返回最后一次插入记录的ID
+  	public function insert_id() {
+  		return mysql_insert_id($this->db);
+  	}
 
 }
 
