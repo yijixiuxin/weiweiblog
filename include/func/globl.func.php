@@ -20,3 +20,21 @@ function show_alert($msg = '', $url = '/') {
 	echo '</script>';
 	exit();
 }
+
+//获取热门文章列表
+function hot_article($limit = 8) {
+	global $db;
+	$sql = "SELECT * FROM xw_article ORDER BY clicks DESC LIMIT 0, {$limit}";
+	$query = $db->query($sql);
+	return $db->fetch_all($query);
+}
+
+//获取最新评论列表
+function new_comments($limit = 8) {
+	global $db;
+	$sql = "SELECT m.*, a.`title` FROM xw_comment as m
+		LEFT JOIN xw_article as a ON m.aid = a.aid  
+		ORDER BY m.adddate DESC LIMIT 0, {$limit}";
+	$query = $db->query($sql);
+	return $db->fetch_all($query);
+}
