@@ -1,5 +1,8 @@
-<?php if (!defined('APPPATH')) exit('no permission');
+<?php
 //关于我的页面显示
+
+//加载基本文件
+require_once ('base.php');
 
 //显示的内容
 $aboutMe = "";

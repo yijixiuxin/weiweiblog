@@ -1,7 +1,9 @@
-<?php if (!defined('APPPATH')) exit('not permission');
+<?php
+//加载基本文件
+require_once ('base.php');
+
 //网站登录退出等相关操作
 $action = isset($_GET['action']) ? $_GET['action'] : '';
-if ($action == '') jump_url('/');	//如果没有指定执行的操作，跳转到主页
 
 if ($action == 'login') {
   //执行登录操作
@@ -31,6 +33,6 @@ if ($action == 'login') {
   $_SESSION['isLogin'] = false;
   jump_url('/');
 } else {
-  //没有要执行的操作，跳转到主页
-  jump_url('/');
+	//加载首页模版
+	include APPPATH.'/tpl/login.tpl.php';
 }
