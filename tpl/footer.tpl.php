@@ -10,10 +10,10 @@
             <div class="f_site">
             	<h1>站点页面</h1>
                 <ul>
-                	<li><a href="">首页</a></li>
-                    <li><a href="">热门文章</a></li>
-                    <li><a href="">最新评论</a></li>
-                    <li><a href="">关于本站</a></li>
+                	<li><a href="/">首页</a></li>
+                    <li><a href="hot_article.php">热门文章</a></li>
+                    <li><a href="comments.php">最新评论</a></li>
+                    <li><a href="about.php">关于我</a></li>
                     <?php
 						if ($isLogin) {
 							echo '<li><a href="/login.php?action=logout">登出</a></li>';

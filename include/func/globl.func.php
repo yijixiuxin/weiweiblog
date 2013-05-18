@@ -3,21 +3,28 @@
 
 //跳转到指定页面的方法
 function jump_url($url = '/') {
-  header('Location='.$url);
-  exit();
+	//设置显示的字符集为UTF8
+	header("Content-type: text/html; charset=utf-8");
+	echo '<html><head><title>信息提示</title></head>
+			<script type="text/javascript">';
+	echo 'location.href = "'.$url.'";';	
+	echo '</script><body></body></html>';
+	exit();
 }
 
 //在页面弹出提示的方法
 function show_alert($msg = '', $url = '/') {
-	echo '
-	<script type="text/javascript>
-		alert("'.$msg.'");';
+	//设置显示的字符集为UTF8
+	header("Content-type: text/html; charset=utf-8");
+	echo '<html><head><title>信息提示</title></head>
+	<script type="text/javascript">
+		alert("'.$msg.'");'."\n";
 	if ($url == '') {
 		echo 'history.go(-1);';
 	} else {
 		echo 'location.href = "'.$url.'";';	
 	}
-	echo '</script>';
+	echo '</script><body></body></html>';
 	exit();
 }
 

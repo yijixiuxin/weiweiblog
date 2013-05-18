@@ -1,4 +1,4 @@
-<?php if (!defined('APPPATH')) exit('no permission');
+<?php
 //修改文章的操作
 require_once('base.php');
 if ($isLogin == false) {	//没有登录，则跳到首页
@@ -20,13 +20,13 @@ if (isset($_POST['submit'])) {
 	}
 	if($image['name'] != '') {
 		//如果有上传图片，则修改，无则不修改
-		$imageType = substr($image['name'], (strrpos('.', $image['name']) + 1));
+		$imageType = substr($image['name'], (strrpos($image['name'],'.') + 1));
 		if (!in_array($imageType, $upload_type)) {
 			show_alert('上传的文件类型不允许!', '');
 		}
 		$imageName = date('Y-m-dHis').'.'.$imageType;
 		$imageUrl = $img_upload.$imageName;
-		if ( ! move_uploaded_file($image['tmp_name'], $imageUrl)) {
+		if ( ! move_uploaded_file($image['tmp_name'], APPPATH.trim($imageUrl, '/'))) {
 			show_alert('图片上传失败，请重试!', '');
 		}
 	} else {
@@ -34,9 +34,9 @@ if (isset($_POST['submit'])) {
 	}
 	
 	//修改文章信息
-	$title = mysql_escape_string($title);
-	$content = mysql_escape_string($content);
-	$sql = "UPDATE xs_article SET `title`='{$title}', `content`='{$content}', editdate='".time()."'";
+	$title = addslashes($title);
+	$content = addslashes($content);
+	$sql = "UPDATE xw_article SET `title`='{$title}', `content`='{$content}', editdate='".time()."'";
 	if ($imageUrl != '') {	//如果图片不等于空，则修改图片地址
 		$sql .= ",image='{$imageUrl}' ";
 	}

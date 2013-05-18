@@ -3,7 +3,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   	<title>小韦博客</title>
-   
+<script type="text/javascript" src="/ueditor/editor_config.js"></script>
+<script type="text/javascript" src="/ueditor/editor_all.js"></script>
 <link href="../static/css/style.css" rel="stylesheet" type="text/css" />
 </head>
   
@@ -15,9 +16,9 @@
         <div class="navi">
         	<ul>
             	<li class="n1"><a href="/">首页</a></li>
-                <li class="n2"><a href="">热门文章</a></li>
-                <li class="n3"><a href="">最新评论</a></li>
-                <li class="n4"><a href="about.php">关于本站</a></li>
+                <li class="n2"><a href="hot_article.php">热门文章</a></li>
+                <li class="n3"><a href="comments.php">最新评论</a></li>
+                <li class="n4"><a href="about.php">关于我</a></li>
             </ul>
         </div>
     </div>

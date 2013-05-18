@@ -216,6 +216,46 @@ font-weight:bold;
 	float:right;
 	text-align:right;
 }
+/*评论列表样式*/
+.comments {
+	font-size:14px;
+}
+.comments .comment_list {
+	margin-left:20px;
+	margin-bottom: 5px;
+	padding-bottom:5px;
+	border-bottom:1px dashed #999;
+}
+.comment_list .date {
+	width:100%;
+	font-size:14px;
+	color:#666;
+}
+.comment_list .comment_username {
+	color:#a4505f;
+}
+.fabiao {
+	margin-bottom:-50px;
+}
+.fabiao form {
+	margin-left:20px;
+}
+.fabiao .nickname {
+	color:#666;
+}
+/*最新评论的样式*/
+.com_article {
+	color:#666;
+	margin-top:10px;
+}
+.com_article a {
+	text-decoration: none;
+	color:#7583e9;
+}
+.com_article a:hover {
+	text-decoration: underline;
+}
+
 /*左侧列表样式*/
 .left {
 	width:250px;

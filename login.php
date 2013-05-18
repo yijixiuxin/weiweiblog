@@ -12,18 +12,18 @@ if ($action == 'login') {
   $userPwd = isset($_POST['userpwd']) ? $_POST['userpwd'] : '';
   //判断用户名和密码是否为空
   if ($userName == '') {
-    show_alert('用户名不能为空!', '/');
+    show_alert('用户名不能为空!', '/login.php');
   }
   if ($userPwd == '') {
-  	show_alert('密码不能为空!', '/');
+  	show_alert('密码不能为空!', '/login.php');
   }
   //生成SQL语句，执行
-  $sql = "SELECT * FROM xs_users WHERE uname='{$userName}' AND pwd='{$userPwd}'";
+  $sql = "SELECT * FROM xw_users WHERE uname='{$userName}' AND pwd='{$userPwd}'";
   $query = $db->query($sql);
-  $userInfo = $db->fetch_ont($query);
+  $userInfo = $db->fetch_one($query);
   if (empty($userInfo)) {
     //没有查找到记录，说明用户名密码错误，提示
-    show_alert('用户名或密码不正确!', '/');
+    show_alert('用户名或密码不正确!', '/login.php');
   }
   //登录成功，记录已登录标示，然后跳转到首页
   $_SESSION['isLogin'] = true;

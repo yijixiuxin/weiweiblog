@@ -22,7 +22,7 @@ class db {
 			$this->dbPwd = $dbPwd;
 			$this->dbName = $dbName;
 			$dbPort && $this->dbPort = $dbPort;
-            $this->db = $this->connect();	//链接数据库
+            $this->connect();	//链接数据库
 		}
 	}
 
@@ -34,7 +34,7 @@ class db {
 
 	//链接数据库的方法
 	public function connect() {
-		$this->db = @mysql_connect($this->dbHost, $this->dbUser, $this->dbPwd);
+		$this->db = mysql_connect($this->dbHost, $this->dbUser, $this->dbPwd);
 		if (empty($this->db)) exit('db connect error');	//链接数据库错误，直接退出程序，输出错误信息
 		mysql_select_db($this->dbName, $this->db);	//选择指定的数据库
 		$this->query("SET NAMES {$this->dbChar}");	//设置数据库的字符集
@@ -46,10 +46,12 @@ class db {
 	}
   	//返回结果集中的一条记录
   	public function fetch_one($query) {
+		if (empty($query)) return false;
       	return mysql_fetch_array($query, MYSQL_ASSOC);
   	}
   	//返回结果集中的所有记录
   	public function fetch_all($query) {
+		if (empty($query)) return false;
   		$arr = array();
   		while ($row = mysql_fetch_array($query, MYSQL_ASSOC)) {
   			$arr[] = $row;

@@ -1,4 +1,4 @@
-<?php if (!defined('APPPATH')) exit('no permission');
+<?php
 //添加文章的操作
 require_once('base.php');
 if ($isLogin == false) {	//没有登录，则跳到首页
@@ -17,26 +17,27 @@ if (isset($_POST['submit'])) {
 	if ($content == '') {
 		show_alert('内容不能为空', '');
 	}
+	
 	//有图片上传，则进行图片上传操作，保存图片到指定目录
 	if ($image['name'] != '') {
 		//上传并保存图片
-		$imageType = substr($image['name'], (strrpos('.', $image['name']) + 1));
+		$imageType = substr($image['name'], (strrpos($image['name'], '.') + 1));
 		if (!in_array($imageType, $upload_type)) {
 			show_alert('上传的文件类型不允许!', '');
 		}
 		$imageName = date('Y-m-dHis').'.'.$imageType;
 		$imageUrl = $img_upload.$imageName;
-		if ( ! move_uploaded_file($image['tmp_name'], $imageUrl)) {
+		if ( ! move_uploaded_file($image['tmp_name'], APPPATH.trim($imageUrl, '/'))) {
 			show_alert('图片上传失败，请重试!', '');
 		}
 	} else {
 		$imageUrl = '';
 	}
 	//将文章记录保存到数据库
-	$title = mysql_escape_string($title);
-	$content = mysql_escape_string($content);
-	$sql = "INSERT INTO xw_article (`title`, `content`, `image`, 'adddate`, `editdate`) VALUES(
-	'{$title}', '{$content}', '{$imageUrl}', '".time()."', '".time()."')";
+	$title = addslashes($title);
+	$content = addslashes($content);
+	$sql = "INSERT INTO xw_article (`title`, `content`, `image`, adddate, editdate) VALUES(
+	'{$title}', '{$content}', '{$imageUrl}', ".time().", ".time().")";
 	if ($db->query($sql)) {
 		//添加成功
 		$aid = $db->insert_id();

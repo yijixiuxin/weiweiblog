@@ -11,4 +11,4 @@ $img_upload = '/upload/';
 $upload_type = array('jpg', 'jpeg', 'gif', 'png');
 
 //定义评论列表每页显示多少条
-$comment_page = 20;
+$comment_page = 10;
