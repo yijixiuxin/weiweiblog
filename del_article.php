@@ -2,7 +2,7 @@
 //加载基本文件
 require_once ('base.php');
 
-$aid = (int)$_GET['aid'];
+$aid = isset($_GET['aid']) ? (int)$_GET['aid'] : 0;
 if (empty($aid)) {
 	jump_url('/');
 }

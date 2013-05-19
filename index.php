@@ -3,7 +3,7 @@
 require_once ('base.php');
 
 //设置分页相关
-$page = (int)$_GET['page'];
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $page = $page <= 0 ? 1 : $page;
 $curPage = 10 * ($page -1);
 $sql = "SELECT COUNT(aid) as count FROM xw_article";
